@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omalizumab in Idiopathic Anaphylaxis — a focusable primer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += ' js';</script>
+<style>
+  :root{
+    --paper:#FBF9F5;
+    --paper-2:#F3EEE4;
+    --panel:#FFFFFF;
+    --ink:#211A2E;
+    --ink-soft:#5C5370;
+    --haem:#43317E;
+    --haem-deep:#2C1F5A;
+    --eosin:#D3496A;
+    --eosin-soft:#F4CDD6;
+    --teal:#2C7A72;
+    --amber:#B9762A;
+    --line:rgba(33,26,46,0.12);
+    --line-strong:rgba(33,26,46,0.22);
+    --shadow:0 1px 2px rgba(33,26,46,.05), 0 8px 30px rgba(44,31,90,.07);
+
+    /* level accents */
+    --l1:#C7607A; --l1-bg:#FBEDF0;
+    --l2:#43317E; --l2-bg:#EDE9F6;
+    --l3:#2C7A72; --l3-bg:#E5F1EF;
+    --l4:#211A2E; --l4-bg:#EBE7E0;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .mono{font-family:"IBM Plex Mono",monospace;}
+
+  /* ---------- background texture: faint cellular field ---------- */
+  .field{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(circle at 18% 28%, rgba(211,73,106,.05) 0 22px, transparent 23px),
+      radial-gradient(circle at 72% 12%, rgba(67,49,126,.055) 0 30px, transparent 31px),
+      radial-gradient(circle at 88% 64%, rgba(211,73,106,.04) 0 26px, transparent 27px),
+      radial-gradient(circle at 34% 84%, rgba(67,49,126,.05) 0 34px, transparent 35px),
+      radial-gradient(circle at 55% 48%, rgba(44,122,114,.04) 0 18px, transparent 19px);
+    filter:blur(.3px);
+  }
+
+  .wrap{position:relative; z-index:1; max-width:940px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- header ---------- */
+  header.masthead{
+    padding:64px 0 26px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--eosin); font-weight:500; margin:0 0 20px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .eyebrow::before{content:""; width:34px; height:1px; background:var(--eosin); display:inline-block;}
+  h1{
+    font-family:"Fraunces",serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px,6.4vw,66px);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    margin:0 0 22px;
+    color:var(--haem-deep);
+  }
+  h1 em{font-style:italic; color:var(--eosin); font-weight:500;}
+  .dek{
+    font-size:19px; color:var(--ink-soft); max-width:60ch; margin:0 0 8px;
+    line-height:1.55;
+  }
+  .dek strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- focus dial ---------- */
+  .dial-shell{
+    position:sticky; top:0; z-index:30;
+    background:rgba(251,249,245,.86);
+    backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-top:36px;
+    display:none;
+  }
+  .js .dial-shell{display:block;}
+  .dial{
+    max-width:940px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .dial-label{
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+    display:flex; flex-direction:column; gap:2px; line-height:1.3;
+    white-space:nowrap;
+  }
+  .dial-label b{color:var(--haem); font-weight:600; font-size:12.5px; letter-spacing:.1em;}
+  .stops{
+    display:flex; flex:1; min-width:280px; gap:6px;
+    background:var(--paper-2); border:1px solid var(--line);
+    border-radius:12px; padding:5px;
+  }
+  .stop{
+    flex:1; border:none; background:transparent; cursor:pointer;
+    padding:9px 6px 8px; border-radius:8px;
+    font-family:"IBM Plex Sans",sans-serif; color:var(--ink-soft);
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    transition:background .28s ease, color .28s ease, box-shadow .28s ease;
+    line-height:1.1;
+  }
+  .stop .mag{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:15px; letter-spacing:-.01em;}
+  .stop .who{font-size:11px; letter-spacing:.02em; opacity:.85;}
+  .stop:hover{color:var(--ink);}
+  .stop[aria-pressed="true"]{
+    background:var(--panel); color:var(--ink);
+    box-shadow:var(--shadow);
+  }
+  .stop[data-set="1"][aria-pressed="true"]{color:var(--l1);}
+  .stop[data-set="2"][aria-pressed="true"]{color:var(--l2);}
+  .stop[data-set="3"][aria-pressed="true"]{color:var(--l3);}
+  .stop[data-set="4"][aria-pressed="true"]{color:var(--l4);}
+  .stop:focus-visible{outline:2px solid var(--haem); outline-offset:2px;}
+  .scale-hint{
+    font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  /* ---------- section strata ---------- */
+  main{padding:30px 0 40px;}
+  .stratum{
+    margin:56px 0;
+    scroll-margin-top:96px;
+  }
+  .stratum-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:8px;
+    border-bottom:1px solid var(--line-strong); padding-bottom:12px;
+  }
+  .stratum-no{
+    font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--eosin);
+    font-weight:600; letter-spacing:.05em; padding-top:6px;
+  }
+  .stratum h2{
+    font-family:"Fraunces",serif; font-weight:600; font-optical-sizing:auto;
+    font-size:clamp(26px,3.6vw,34px); line-height:1.1; letter-spacing:-.01em;
+    margin:0; color:var(--haem-deep); flex:1;
+  }
+  .stratum-sub{
+    color:var(--ink-soft); font-size:15.5px; margin:14px 0 4px; max-width:64ch;
+  }
+
+  /* ---------- layers ---------- */
+  .layer{
+    margin-top:14px; border-radius:14px; overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    box-shadow:var(--shadow);
+  }
+  .layer-tag{
+    display:flex; align-items:center; gap:10px;
+    padding:11px 18px; cursor:pointer; user-select:none;
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px;
+    letter-spacing:.13em; text-transform:uppercase; font-weight:500;
+    background:var(--paper-2); border:none; width:100%; text-align:left;
+    color:var(--ink-soft); transition:background .2s ease;
+    list-style:none; -webkit-tap-highlight-color:transparent;
+  }
+  .layer-tag::-webkit-details-marker{display:none;}
+  .layer-tag::marker{content:"";}
+  .layer-tag:hover{background:var(--paper);}
+  .layer-tag:focus-visible{outline:2px solid var(--haem); outline-offset:-2px;}
+  .layer[data-level="1"] .layer-tag{background:var(--l1-bg); color:var(--l1);}
+  .layer[data-level="2"] .layer-tag{background:var(--l2-bg); color:var(--l2);}
+  .layer[data-level="3"] .layer-tag{background:var(--l3-bg); color:var(--l3);}
+  .layer[data-level="4"] .layer-tag{background:var(--l4-bg); color:var(--l4);}
+  .dot{width:8px; height:8px; border-radius:50%; background:currentColor; flex:none;}
+  .layer-tag .mag{font-weight:600;}
+  .layer-tag .name{color:var(--ink); font-weight:500; letter-spacing:.04em;}
+  .layer[data-level="1"] .layer-tag .name{color:var(--l1);}
+  .layer[data-level="2"] .layer-tag .name{color:var(--l2);}
+  .layer[data-level="3"] .layer-tag .name{color:var(--l3);}
+  .layer[data-level="4"] .layer-tag .name{color:var(--l4);}
+  .chev{margin-left:auto; transition:transform .3s ease; font-size:14px; opacity:.6;}
+  .layer[open] .chev{transform:rotate(180deg);}
+
+  .layer-content{
+    padding:6px 22px 22px;
+    animation:layerReveal .42s ease both;
+  }
+  @keyframes layerReveal{
+    from{filter:blur(6px); opacity:0;}
+    to{filter:blur(0); opacity:1;}
+  }
+  .layer-content p{margin:12px 0;}
+  .layer-content p:first-child{margin-top:10px;}
+  .layer-content strong{color:var(--haem-deep); font-weight:600;}
+  .layer[data-level="4"] .layer-content strong{color:var(--ink);}
+
+  /* reduced motion */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+    .layer-content{animation:none;}
+  }
+
+  /* ---------- inline scientific bits ---------- */
+  cite.ref{font-style:normal;}
+  cite.ref a{
+    font-family:"IBM Plex Mono",monospace; font-size:.72em; font-weight:600;
+    color:var(--eosin); text-decoration:none; vertical-align:super;
+    padding:0 1px; border-bottom:1px dotted transparent;
+  }
+  cite.ref a:hover{border-bottom-color:var(--eosin);}
+  .term{
+    border-bottom:1px dotted var(--haem); cursor:help; color:var(--haem-deep);
+    font-weight:500;
+  }
+  .callout{
+    margin:18px 0; padding:14px 18px; border-left:3px solid var(--eosin);
+    background:var(--l1-bg); border-radius:0 10px 10px 0; font-size:15.5px;
+  }
+  .callout.mech{border-left-color:var(--teal); background:var(--l3-bg);}
+  .callout.edge{border-left-color:var(--ink); background:var(--l4-bg);}
+  .callout .k{
+    font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:5px;
+  }
+  ul.clean{margin:12px 0; padding-left:0; list-style:none;}
+  ul.clean li{position:relative; padding-left:22px; margin:9px 0;}
+  ul.clean li::before{
+    content:""; position:absolute; left:2px; top:11px; width:7px; height:7px;
+    border-radius:50%; background:var(--eosin);
+  }
+  ul.clean.mech li::before{background:var(--teal);}
+  .data-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:10px; overflow:hidden; margin:18px 0;
+  }
+  .data-cell{background:var(--panel); padding:14px 16px;}
+  .data-cell .num{font-family:"Fraunces",serif; font-size:30px; font-weight:600; color:var(--haem); line-height:1;}
+  .data-cell .lab{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em; color:var(--ink-soft); margin-top:6px; text-transform:uppercase;}
+
+  /* ---------- paradox feature block ---------- */
+  .paradox{
+    margin:26px 0; padding:26px 26px 22px; border-radius:16px;
+    background:linear-gradient(135deg, var(--haem-deep), #3a2a63 60%, #4a2a55);
+    color:#F3EFF9; position:relative; overflow:hidden;
+  }
+  .paradox::after{
+    content:""; position:absolute; right:-40px; top:-40px; width:220px; height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(211,73,106,.34), transparent 70%);
+  }
+  .paradox .k{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--eosin-soft);}
+  .paradox h3{font-family:"Fraunces",serif; font-weight:500; font-size:24px; margin:8px 0 12px; color:#fff; position:relative;}
+  .paradox p{margin:10px 0; color:#E4DCF1; position:relative; font-size:15.5px;}
+  .paradox strong{color:#fff;}
+
+  /* ---------- references ---------- */
+  .refs{margin:64px 0 30px; padding-top:26px; border-top:1px solid var(--line-strong);}
+  .refs h2{font-family:"Fraunces",serif; font-weight:600; font-size:26px; color:var(--haem-deep); margin:0 0 6px;}
+  .refs p.note{color:var(--ink-soft); font-size:14.5px; margin:0 0 22px;}
+  ol.reflist{margin:0; padding-left:0; list-style:none; counter-reset:r;}
+  ol.reflist li{
+    counter-increment:r; position:relative; padding:12px 0 12px 44px;
+    border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.5;
+  }
+  ol.reflist li::before{
+    content:"[" counter(r) "]"; position:absolute; left:0; top:12px;
+    font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; color:var(--eosin);
+  }
+  ol.reflist a{color:var(--haem); text-decoration:none; border-bottom:1px solid var(--line-strong);}
+  ol.reflist a:hover{border-bottom-color:var(--haem);}
+  ol.reflist .meta{color:var(--ink-soft); font-family:"IBM Plex Mono",monospace; font-size:11.5px;}
+  ol.reflist .tag{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10px;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; border-radius:20px;
+    margin-left:6px; vertical-align:1px;
+  }
+  .tag.new{background:var(--eosin-soft); color:#9c2a45;}
+
+  /* ---------- footer ---------- */
+  footer{padding:26px 0 70px; color:var(--ink-soft); font-size:13.5px; line-height:1.6;}
+  footer .disclaim{
+    padding:16px 18px; background:var(--paper-2); border:1px solid var(--line);
+    border-radius:12px; margin-bottom:18px;
+  }
+  footer .disclaim b{color:var(--ink);}
+  .sig{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.05em;}
+
+  a.jump{color:var(--haem); text-decoration:none;}
+
+  @media (max-width:640px){
+    body{font-size:16px;}
+    .dial{gap:12px; padding:12px 18px;}
+    .dial-label{display:none;}
+    .scale-hint{display:none;}
+    .stop .who{font-size:10px;}
+    .wrap{padding:0 18px;}
+    header.masthead{padding:44px 0 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="field" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Anti-IgE therapy · a focusable primer</p>
+    <h1>Omalizumab in <em>idiopathic&nbsp;anaphylaxis</em></h1>
+    <p class="dek">The same story told at four magnifications, from the <strong>whole person</strong> down to the <strong>single molecule</strong> — read as far as you want to go.</p>
+    <p class="dek" style="font-size:15px;"><strong>Tap any panel</strong> to open it and reveal a deeper stratum. When the focus dial appears below, it sets the depth of every panel at once.</p>
+  </header>
+</div>
+
+<!-- FOCUS DIAL -->
+<div class="dial-shell">
+  <div class="dial" role="group" aria-label="Focus depth">
+    <div class="dial-label"><span>Focus</span><b>objective</b></div>
+    <div class="stops" role="radiogroup" aria-label="Reading depth">
+      <button class="stop" data-set="1" aria-pressed="true" role="radio">
+        <span class="mag">×1</span><span class="who">The person</span>
+      </button>
+      <button class="stop" data-set="2" aria-pressed="false" role="radio">
+        <span class="mag">×20</span><span class="who">The clinic</span>
+      </button>
+      <button class="stop" data-set="3" aria-pressed="false" role="radio">
+        <span class="mag">×400</span><span class="who">The cell</span>
+      </button>
+      <button class="stop" data-set="4" aria-pressed="false" role="radio">
+        <span class="mag">×10000</span><span class="who">The molecule</span>
+      </button>
+    </div>
+    <div class="scale-hint" id="scaleHint">patient · plain language</div>
+  </div>
+</div>
+
+<div class="wrap">
+<main>
+
+  <!-- ================= STRATUM 01 ================= -->
+  <section class="stratum" id="s1">
+    <div class="stratum-head">
+      <span class="stratum-no">01</span>
+      <h2>What is idiopathic anaphylaxis?</h2>
+    </div>
+    <p class="stratum-sub">A severe allergic reaction that keeps happening — with no trigger anyone can find.</p>
+
+    <details class="layer" data-level="1" open>
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×1</span> · <span class="name">The person</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Anaphylaxis is the most serious kind of allergic reaction. It comes on fast and can affect the whole body — skin flushing and hives, a swelling throat, trouble breathing, a sudden drop in blood pressure, sometimes collapse. It is a medical emergency, and the treatment is <strong>adrenaline</strong> (epinephrine), injected into the outer thigh.</p>
+        <p>Usually there is a clear culprit: a food, a medicine, an insect sting. But in some people the reactions keep happening and, even after careful testing, <strong>no cause is ever found</strong>. When that is the case, doctors call it <em>idiopathic</em> anaphylaxis — "idiopathic" simply means "cause unknown."<cite class="ref"><a href="#r-ascia">ASCIA</a></cite></p>
+        <div class="callout">
+          <span class="k">Why it matters to you</span>
+          Living with reactions you cannot predict is frightening and exhausting. People describe feeling constantly "on alert." That burden is real, and it is now taken seriously in the medical literature.<cite class="ref"><a href="#r-lived">Lived experience 2025</a></cite> You are not imagining it, and you are not alone.
+        </div>
+      </div>
+    </details>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Idiopathic anaphylaxis (IA) is a <strong>diagnosis of exclusion</strong>. It requires two things: a confirmed episode meeting anaphylaxis criteria, and no identifiable trigger after a structured work-up. Depending on the population studied, somewhere between roughly 10% and 35% of recurrent anaphylaxis is ultimately labelled idiopathic.<cite class="ref"><a href="#r-grand">Grand Rounds 2025</a></cite><cite class="ref"><a href="#r-wao">WAO 2026</a></cite></p>
+        <p>The diagnostic work-up should rule out IgE-mediated food and drug allergy, cofactor-dependent anaphylaxis (exercise, NSAIDs, alcohol), α-gal syndrome, and — importantly — <strong>clonal mast cell disease</strong>. That means measuring baseline serum tryptase and screening for the <span class="term" title="An activating mutation in the KIT receptor tyrosine kinase, hallmark of clonal mast cell disease">KIT D816V</span> mutation.<cite class="ref"><a href="#r-grand">Grand Rounds 2025</a></cite></p>
+        <p>To confirm mast cell involvement during an episode, the practical tool is a <strong>paired tryptase</strong>: an acute sample (ideally 30&nbsp;min–2&nbsp;h after onset) compared with a baseline drawn ≥24&nbsp;h later. The widely used consensus threshold for a significant rise is an acute value exceeding <strong>(1.2 × baseline) + 2&nbsp;ng/mL</strong>.<cite class="ref"><a href="#r-tryptase">Tryptase review 2020</a></cite></p>
+        <div class="callout">
+          <span class="k">A caution from 2025</span>
+          Not all "idiopathic" cases truly are. A 2025 report re-diagnosed apparent IA as a reaction to a food additive that standard panels had missed. Some idiopathic labels are simply triggers we have not yet found.<cite class="ref"><a href="#r-notidio">Frontiers 2025</a></cite>
+        </div>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>At the cellular level, anaphylaxis is driven by <strong>mast cells and basophils</strong> releasing their mediators — histamine, tryptase, prostaglandin D₂, leukotrienes, platelet-activating factor. IA sits within the family of mast cell activation disorders, classified as a form of <strong>idiopathic (non-clonal) MCAS</strong>.<cite class="ref"><a href="#r-giannetti">Giannetti 2020</a></cite></p>
+        <p>The mechanism is heterogeneous and genuinely unsettled. Several cellular observations exist:</p>
+        <ul class="clean mech">
+          <li>During acute episodes, patients show more activated T cells (<span class="mono">CD3⁺HLA-DR⁺</span>) than in remission, and more activated B cells (<span class="mono">CD19⁺CD23⁺</span>) even at baseline.<cite class="ref"><a href="#r-perplexing">Perplexing challenge 2021</a></cite></li>
+          <li>Peripheral blood mononuclear cells from IA patients release elevated <strong>type 2 cytokines — IL-4, IL-5, IL-13</strong> — after stimulation, compared with atopic and non-atopic controls.<cite class="ref"><a href="#r-yardstick">Yardstick 2020</a></cite></li>
+          <li>Yet <em>ex vivo</em>, cultured mast cells from IA patients did <strong>not</strong> show a hyper-releasable phenotype to IgE cross-linking — arguing the defect may not be intrinsic to the mast cell itself.<cite class="ref"><a href="#r-perplexing">Perplexing challenge 2021</a></cite></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The competing endotype hypotheses matter because they predict <em>different</em> therapeutic targets, and IA almost certainly is not one disease.</p>
+        <ul class="clean">
+          <li><strong>Occult clonal disease.</strong> A subset harbour <span class="mono">KIT D816V</span> or meet criteria for monoclonal mast cell activation syndrome / indolent systemic mastocytosis. Hereditary α-tryptasemia (extra copies of <span class="mono">TPSAB1</span>) is enriched and modifies severity.<cite class="ref"><a href="#r-kosnik">Košnik 2024</a></cite></li>
+          <li><strong>A lymphocyte-driven, cytokine-priming model.</strong> The CD3⁺HLA-DR⁺ activation signal plus excess IL-4/IL-5/IL-13 suggests a Th2/adaptive-immune driver that lowers the mast cell's degranulation set-point extrinsically — consistent with the steroid responsiveness of many IA patients and distinct from monoclonal MCAS.<cite class="ref"><a href="#r-scidirect">JACI:IP review 2025</a></cite></li>
+        </ul>
+        <div class="callout edge">
+          <span class="k">Open question</span>
+          If the mast cell itself is not intrinsically hyper-releasable <em>ex vivo</em>, why does an IgE-directed drug work so well? That paradox is the heart of stratum 04 — and it points toward IgE's non-classical, "tonic" effects on mast cell biology rather than to classical allergen cross-linking.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STRATUM 02 ================= -->
+  <section class="stratum" id="s2">
+    <div class="stratum-head">
+      <span class="stratum-no">02</span>
+      <h2>What is omalizumab?</h2>
+    </div>
+    <p class="stratum-sub">An engineered antibody that mops up IgE — the allergy molecule.</p>
+
+    <details class="layer" data-level="1" open>
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×1</span> · <span class="name">The person</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Omalizumab (brand name Xolair) is a lab-made antibody given as an injection, usually every few weeks. It was first used for severe allergic asthma and chronic hives, and it works by lowering the amount of the "allergy antibody" — called <strong>IgE</strong> — floating around in your body.</p>
+        <p>For people with frequent idiopathic anaphylaxis, it is used <strong>off-label as a preventive treatment</strong> — a way to stop reactions before they start, rather than to treat one in the moment. (Adrenaline is still what treats an actual reaction.)</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Omalizumab is a humanised recombinant <strong>IgG1 monoclonal antibody against IgE</strong>. Approved indications now span allergic asthma, chronic spontaneous urticaria, chronic rhinosinusitis with nasal polyps, and food allergy. Its use in IA is off-label, typically justified under a concurrent diagnosis of urticaria or asthma.<cite class="ref"><a href="#r-annals">Annals series 2021</a></cite></p>
+        <p>The common starting regimen in IA is <strong>300 mg every 4 weeks</strong> — the urticaria dose — though asthma-style weight/IgE-based dosing is also used.<cite class="ref"><a href="#r-annals">Annals series 2021</a></cite></p>
+        <div class="callout">
+          <span class="k">Note the irony</span>
+          Omalizumab itself carries a boxed warning for anaphylaxis, which can occur even after the first dose or beyond a year of treatment. The drug used to <em>prevent</em> anaphylaxis can, rarely, cause it — so first doses are given where reactions can be managed.<cite class="ref"><a href="#r-fda">FDA label 2025</a></cite>
+        </div>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Omalizumab binds circulating <strong>free IgE</strong> at the same region IgE uses to dock onto its receptor. By soaking up free IgE, it prevents new IgE from arming mast cells and basophils. The downstream consequence is the key one: with less IgE around, cells <strong>downregulate their high-affinity IgE receptor, FcεRI</strong>.<cite class="ref"><a href="#r-chang">Chang 2006</a></cite></p>
+        <ul class="clean mech">
+          <li>On basophils, FcεRI density falls fast — within days.<cite class="ref"><a href="#r-beck">Beck 2004</a></cite></li>
+          <li>On tissue mast cells it takes longer — weeks to a couple of months — dropping to under 5% of baseline.<cite class="ref"><a href="#r-chang">Chang 2006</a></cite></li>
+          <li>It also downregulates CD23 (FcεRII) on B cells and reduces FcεRI on dendritic cells, dialling down antigen presentation.<cite class="ref"><a href="#r-kaplan">Kaplan 2017</a></cite></li>
+        </ul>
+        <p>The net effect: the mediator-packed cells become far less sensitive to stimulation. Anti-IgE is best understood as a <strong>mast cell–stabilising agent</strong>, not just an IgE scavenger.<cite class="ref"><a href="#r-chang">Chang 2006</a></cite></p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Structurally, omalizumab is more interesting than "it blocks binding." Free IgE-Fc adopts an <strong>acutely bent conformation</strong>. The crystal structure of the omalizumab-Fab / IgE-Fc complex (one Fab per Cε3 domain) shows the antibody forces IgE into only a <em>partially</em> bent state, driving large-scale conformational change across the Cε3 domains.<cite class="ref"><a href="#r-allosteric">Allosteric MoA 2017</a></cite></p>
+        <ul class="clean">
+          <li><strong>Allosteric FcεRI inhibition</strong> — the conformational change, not just steric overlap, blocks the FcεRI interaction.</li>
+          <li><strong>Steric CD23 inhibition</strong> — the binding sites overlap directly on each Cε3 domain.</li>
+          <li><strong>Active facilitated dissociation</strong> — omalizumab can accelerate the removal of <em>already receptor-bound</em> IgE, exploiting IgE's intrinsic flexibility. This is a genuinely non-passive mechanism.<cite class="ref"><a href="#r-allosteric">Allosteric MoA 2017</a></cite><cite class="ref"><a href="#r-comparable">Comparable actions 2016</a></cite></li>
+        </ul>
+        <p>Removing pre-bound IgE reduces proximal signalling (Syk, PLCγ, LAT phosphorylation), cutting degranulation and leukotriene synthesis in both mast cells and basophils.<cite class="ref"><a href="#r-comparable">Comparable actions 2016</a></cite></p>
+        <div class="callout edge">
+          <span class="k">A fourth, under-appreciated mechanism</span>
+          Omalizumab does not simply remove IgE — it forms <strong>IgE:omalizumab immune complexes that accumulate to roughly 5–10× basal IgE levels</strong>. In an <em>in vitro</em> reconstitution model these complexes act as an <strong>"allergen sweeper,"</strong> trapping incoming allergen so it never reaches receptor-bound IgE, reducing antigen-induced activation. It is a genuinely distinct effect from FcεRI downregulation and may matter most early in treatment.<cite class="ref"><a href="#r-hsu">Hsu 2010</a></cite>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STRATUM 03 ================= -->
+  <section class="stratum" id="s3">
+    <div class="stratum-head">
+      <span class="stratum-no">03</span>
+      <h2>How it calms the cell</h2>
+    </div>
+    <p class="stratum-sub">The mechanism, from "quietens the alarm" to receptor kinetics.</p>
+
+    <details class="layer" data-level="1" open>
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×1</span> · <span class="name">The person</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Think of the cells that cause allergic reactions as having lots of tiny "triggers" on their surface. IgE sits in those triggers, waiting. Omalizumab removes the IgE — and when the IgE goes, the cell packs away most of its triggers too. With far fewer triggers left, the cell becomes calmer and much harder to set off, whatever the cause.</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Clinically, the useful mental model is <strong>threshold-raising</strong>. Beyond simply blocking allergen cross-linking, lowering free IgE and stripping FcεRI raises the overall degranulation threshold of the cell.<cite class="ref"><a href="#r-ciu-protocol">CIU protocol</a></cite> That is why the drug helps conditions where no external allergen is even in play — like chronic spontaneous urticaria, and, plausibly, idiopathic anaphylaxis.</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>IgE is not a passive passenger. Even <strong>without</strong> cross-linking, monomeric IgE bound to FcεRI exerts "tonic" effects on mast cells:</p>
+        <ul class="clean mech">
+          <li>promotes mast cell <strong>survival and proliferation</strong>, expanding the pool;</li>
+          <li><strong>lowers the release threshold</strong> and raises sensitivity to diverse stimuli — including non-IgE pathways;</li>
+          <li>potentiates storage and <em>de novo</em> synthesis of mediators and cytokines.<cite class="ref"><a href="#r-kaplan">Kaplan 2017</a></cite></li>
+        </ul>
+        <p>Experimentally, skin mast cells cultured with IgE become <strong>more releasable</strong>; adding omalizumab reverses this, returning degranulation, PGD₂, GM-CSF and TNF-α toward baseline.<cite class="ref"><a href="#r-kalesnikoff">IgE-enhanced FcεRI 2007</a></cite> This "de-priming" is the crux of how anti-IgE quietens cells regardless of the initiating trigger.</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>A wrinkle worth holding in mind: the mechanism is <strong>not</strong> a simple neutralisation of a circulating factor. When omalizumab was added <em>in vitro</em> to serum from responsive CSU patients, the serum <strong>retained</strong> its capacity to degranulate mast cells and basophils; sera from clinically responding patients likewise still activated cells.<cite class="ref"><a href="#r-serrano">Serrano-Candelas 2017</a></cite></p>
+        <p>Interpretation: the benefit is a <strong>slow, systemic reprogramming</strong> of effector-cell biology — driven by free-IgE depletion, FcεRI downregulation kinetics, and reversal of tonic IgE priming — rather than acute competitive antagonism of a serum trigger. One <em>in vitro</em> study even suggests the rapid effect owes more to removing an activating signal than to installing an inhibitory one.<cite class="ref"><a href="#r-gericke">Gericke 2015</a></cite></p>
+        <p>A counterintuitive wrinkle worth sitting with: while omalizumab strips surface receptors, blood basophil <em>numbers</em> and histamine content <strong>rise</strong> during therapy, and the <strong>intrinsic per-receptor sensitivity of basophils to IgE-mediated stimulation increases</strong> — the cells become fewer-armed but individually more responsive.<cite class="ref"><a href="#r-macglashan">MacGlashan 2013</a></cite> Net clinical benefit therefore reflects the balance of far fewer receptors against a higher per-receptor gain — a reminder that "mast cell stabiliser" is a useful shorthand, not a complete account.</p>
+        <div class="callout edge">
+          <span class="k">Kinetics that matter clinically</span>
+          Basophil FcεRI falls in days; skin mast cell FcεRI over 1–2 months. The clinical lag before IA episodes stop tracks the slower mast cell compartment — a useful expectation to set with patients.<cite class="ref"><a href="#r-beck">Beck 2004</a></cite><cite class="ref"><a href="#r-kaplan">Kaplan 2017</a></cite>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STRATUM 04 — PARADOX ================= -->
+  <section class="stratum" id="s4">
+    <div class="stratum-head">
+      <span class="stratum-no">04</span>
+      <h2>The paradox: why does it work in IA?</h2>
+    </div>
+    <p class="stratum-sub">An IgE drug for a disease that may not be IgE-driven.</p>
+
+    <div class="paradox">
+      <span class="k">The core puzzle</span>
+      <h3>If nobody can find an allergen, and mast cells may not even be intrinsically hyper-releasable, why does removing IgE prevent the attacks?</h3>
+      <p>The most coherent answer is that omalizumab doesn't work in IA by blocking a specific allergen at all. It works as a broad <strong>mast cell de-exciter</strong>: three overlapping effects that raise the bar for degranulation no matter what is pulling the trigger.</p>
+    </div>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Clinically, the response pattern supports a trigger-agnostic mechanism. In case series, omalizumab helps IA patients <strong>with and without</strong> evidence of clonal disease, and works across children and adults at variable doses.<cite class="ref"><a href="#r-annals">Annals series 2021</a></cite> Its success in IA is, in a sense, indirect evidence that IgE plays <em>some</em> role in the pathway — even when a specific allergen is never identified.</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>Three mechanisms plausibly combine in IA:</p>
+        <ul class="clean mech">
+          <li><strong>Threshold elevation.</strong> Cutting FcεRI by &gt;95% makes cells less excitable to <em>any</em> stimulus, not only IgE cross-linking.</li>
+          <li><strong>Reversal of tonic IgE priming.</strong> Many IA patients are atopic with elevated IgE; that IgE keeps mast cells in a pro-degranulation state. Removing it de-primes them.</li>
+          <li><strong>Dampening the type-2 loop.</strong> CD23 downregulation on B cells plus reduced antigen presentation may quiet the IL-4/IL-5/IL-13 milieu implicated in IA.<cite class="ref"><a href="#r-kaplan">Kaplan 2017</a></cite><cite class="ref"><a href="#r-perplexing">Perplexing 2021</a></cite></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The predictive-biomarker angle is where this gets actionable. Baseline <strong>basophil count and basophil functional phenotype</strong> (histamine-release behaviour) have been proposed as predictors of omalizumab responsiveness — a handle on which IA endotype sits in front of you.<cite class="ref"><a href="#r-scidirect">JACI:IP 2025</a></cite></p>
+        <p>Crucially, in the 2024 Košnik cohort the presence of <span class="mono">KIT D816V</span> and hereditary α-tryptasemia <strong>did not blunt the response</strong> — implying the de-exciter mechanism operates upstream of, or in parallel to, the clonal lesion.<cite class="ref"><a href="#r-kosnik">Košnik 2024</a></cite> That is a strong hint that FcεRI-density/threshold effects, rather than correction of a specific molecular defect, carry the clinical benefit.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STRATUM 05 — EVIDENCE ================= -->
+  <section class="stratum" id="s5">
+    <div class="stratum-head">
+      <span class="stratum-no">05</span>
+      <h2>What the evidence actually shows</h2>
+    </div>
+    <p class="stratum-sub">Encouraging real-world response — but the one randomised trial was underpowered.</p>
+
+    <details class="layer" data-level="1" open>
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×1</span> · <span class="name">The person</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>In the studies done so far, most people with hard-to-control idiopathic anaphylaxis who tried omalizumab <strong>got better</strong> — many stopped having attacks entirely. The catch: these are mostly small studies and reports, not large, rigorous trials. The signal is genuinely encouraging, but the proof is not yet as strong as we would like.</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <div class="data-grid">
+          <div class="data-cell"><div class="num">63%</div><div class="lab">Complete response</div></div>
+          <div class="data-cell"><div class="num">28.5%</div><div class="lab">Partial response</div></div>
+          <div class="data-cell"><div class="num">35</div><div class="lab">Patients (2-centre series)</div></div>
+          <div class="data-cell"><div class="num">300mg</div><div class="lab">Usual dose / 4 wks</div></div>
+        </div>
+        <p>Where omalizumab sits in the sequence matters. The usual prophylactic ladder for frequent IA runs: high-dose non-sedating <strong>H1 antihistamines</strong> → add an <strong>H2 antihistamine</strong> → a <strong>leukotriene receptor antagonist</strong> (montelukast) and/or <strong>cromolyn</strong> → <strong>corticosteroids</strong> for breakthrough. Omalizumab is reached for when this fails or to spare chronic steroids.<cite class="ref"><a href="#r-review">Systematic review 2021</a></cite></p>
+        <p>The largest retrospective series (35 IA patients without clonality) reported complete response in 63%, partial in 28.5%, with only 3 non-responders — concluding omalizumab may be effective when antihistamines and mast-cell stabilisers fail.<cite class="ref"><a href="#r-review">Systematic review 2021</a></cite> A 2024 cohort of 7 patients (some with KIT D816V or HαT) reported <strong>complete response in all</strong>, with no anaphylaxis over 0.5–7.5 years of treatment.<cite class="ref"><a href="#r-kosnik">Košnik 2024</a></cite></p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The single randomised, double-blind, placebo-controlled trial (Carter et al., NCT00890162) enrolled 19 patients with frequent IA (≥6 episodes/year), with tryptase, KIT D816V analysis and bone-marrow evaluation to exclude clonal disease. Omalizumab was safely administered; the efficacy <strong>trended in favour of treatment but did not reach statistical significance.</strong><cite class="ref"><a href="#r-rct">Carter RCT 2021</a></cite></p>
+        <div class="callout mech">
+          <span class="k">Read the RCT carefully</span>
+          Small n, a strong placebo/regression-to-the-mean risk in an episodic disease, and a demanding endpoint. "Not significant" here reflects <em>underpowering</em>, not a demonstrated lack of effect — a distinction that matters when weighing it against the consistent open-label signal.
+        </div>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The evidence base is structurally weak by design: IA's phenotype/endotype heterogeneity, absence of validated response biomarkers, and small samples make controlled trials hard to power. The December 2025 JACI:InPractice CME review (literature to March 2025) frames omalizumab as contributing to improvement or remission in multiple reported patients, with several complete resolutions — while stressing the lack of controlled data.<cite class="ref"><a href="#r-scidirect">JACI:IP review 2025</a></cite></p>
+        <p>The methodological path forward is endotype-stratified enrolment (basophil phenotype, tryptase genetics, cytokine signature) rather than another unstratified small RCT — otherwise heterogeneity will keep swamping any true effect.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STRATUM 06 — CUTTING EDGE ================= -->
+  <section class="stratum" id="s6">
+    <div class="stratum-head">
+      <span class="stratum-no">06</span>
+      <h2>The 2025–2026 cutting edge</h2>
+    </div>
+    <p class="stratum-sub">Next-generation anti-IgE, a Th2 alternative, biosimilars, and sharper diagnostics.</p>
+
+    <details class="layer" data-level="1" open>
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×1</span> · <span class="name">The person</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The field is moving quickly. Researchers are designing <strong>improved versions of omalizumab</strong> that act faster and stronger, testing a <strong>different type of drug</strong> (dupilumab) for people who don't respond, and cheaper <strong>biosimilar</strong> versions are now available. Doctors are also getting better at spotting hidden triggers, so fewer cases stay truly "idiopathic."</p>
+      </div>
+    </details>
+
+    <details class="layer" data-level="2">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <ul class="clean">
+          <li><strong>Dupilumab as an alternative.</strong> A published case of twice-weekly recurrent IA — who relapsed off omalizumab — achieved near-resolution over six months on dupilumab (anti-IL-4Rα, blocking IL-4/IL-13). A logical off-label option for Th2-dominant or omalizumab-failing patients.<cite class="ref"><a href="#r-dupi">Dupilumab case 2023</a></cite></li>
+          <li><strong>Biosimilar access.</strong> Omlyclo (omalizumab-igec) gained FDA approval in 2025, expanding access and likely lowering cost.<cite class="ref"><a href="#r-fda">FDA/Omlyclo 2025</a></cite></li>
+          <li><strong>Better diagnostics.</strong> Renewed emphasis on additives, cofactors and clonal screening is reclassifying some "IA."<cite class="ref"><a href="#r-notidio">Frontiers 2025</a></cite></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer" data-level="3">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×400</span> · <span class="name">The cell</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The headline mechanistic advance is <strong>engineered high-affinity anti-IgE variants (the "C03" series)</strong>, reported in JACI in October 2025. These antibodies show roughly <strong>10-fold higher IgE-binding affinity</strong> than omalizumab and superior inhibition of IgE–FcεRI binding.<cite class="ref"><a href="#r-c03">C03 variants 2025</a></cite></p>
+        <ul class="clean mech">
+          <li>C03-H1L2 / C03-H2L2 more potently <strong>displace receptor-bound IgE</strong> from humanised-mouse mast cells and human basophils — <em>without</em> triggering spontaneous activation.</li>
+          <li>In a systemic anaphylaxis mouse model, a <strong>single dose desensitised effector cells within 36 hours</strong> and fully prevented antigen-induced anaphylaxis — where omalizumab did not.<cite class="ref"><a href="#r-c03">C03 variants 2025</a></cite></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer" data-level="4">
+      <summary class="layer-tag"><span class="dot"></span><span class="mag">×10000</span> · <span class="name">The molecule</span><span class="chev">▾</span></summary>
+      <div class="layer-content">
+        <p>The C03 design thesis reframes the anti-IgE target profile: the goal is no longer just <em>affinity</em> for free IgE, but <strong>"disruptive potency"</strong> — engineering conformational flexibility so the antibody actively strips pre-bound IgE off FcεRI faster, exploiting the same allosteric flexibility revealed in the 2017 omalizumab structure.<cite class="ref"><a href="#r-c03">C03 2025</a></cite><cite class="ref"><a href="#r-allosteric">Allosteric MoA 2017</a></cite> Rapid facilitated dissociation, not slow FcεRI turnover, becomes the driver — collapsing the therapeutic lag from weeks to hours.</p>
+        <div class="callout edge">
+          <span class="k">Where this points for IA</span>
+          If a single dose can desensitise effector cells within 36 hours in vivo, the entire treatment model for IA could shift from chronic monthly prophylaxis toward <strong>rapid, durable induction of an anaphylaxis-resistant state</strong>. For a trigger-agnostic disease, a broad, fast, potent de-exciter is close to the ideal drug. Whether the mouse-model desensitisation translates to human IA — and how it interacts with clonal/HαT endotypes — is the open translational question for 2026–2028.
+        </div>
+        <p style="font-size:14px;color:var(--ink-soft);">Adjacent landscape: ligelizumab, quilizumab and UB-221 represent later-generation anti-IgE mAbs; the anti-IgE class is broadening while dupilumab opens a parallel Th2-axis strategy.<cite class="ref"><a href="#r-frontiers">MC stabilizers review 2024</a></cite></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= REFERENCES ================= -->
+  <section class="refs" id="refs">
+    <h2>References & further reading</h2>
+    <p class="note">Primary sources retrieved July 2026. Newest items flagged. Open any to go deeper than this page can.</p>
+    <ol class="reflist">
+      <li id="r-c03"><a href="https://www.jacionline.org/article/S0091-6749(25)00623-2/fulltext" target="_blank" rel="noopener">High-affinity omalizumab variants with optimized disruptive potency prevent anaphylaxis in vivo</a> <span class="tag new">Oct 2025</span><br><span class="meta">J Allergy Clin Immunol · Pennington, Jardetzky, Eggel et al.</span></li>
+      <li id="r-scidirect"><a href="https://www.jaci-inpractice.org/article/S2213-2198(25)00820-7/fulltext" target="_blank" rel="noopener">Idiopathic Anaphylaxis (Grand Rounds review + CME)</a> <span class="tag new">Dec 2025</span><br><span class="meta">JACI: In Practice · Khalaf, Cook et al. · lit. reviewed to Mar 2025</span></li>
+      <li id="r-grand"><a href="https://www.jaci-inpractice.org/article/S2213-2198(25)00820-7/pdf" target="_blank" rel="noopener">Idiopathic Anaphylaxis — pathogenesis, differential & management</a> <span class="tag new">2025</span><br><span class="meta">JACI: In Practice (PDF)</span></li>
+      <li id="r-wao"><a href="https://www.sciencedirect.com/science/article/pii/S1939455126001717" target="_blank" rel="noopener">Overview of allergic disease: Anaphylaxis — WAO White Book on Allergy 2026</a> <span class="tag new">Mar 2026</span><br><span class="meta">World Allergy Organization</span></li>
+      <li id="r-notidio"><a href="https://www.frontiersin.org/journals/allergy/articles/10.3389/falgy.2025.1661992/full" target="_blank" rel="noopener">Case Report: Not all recurrent "idiopathic" anaphylaxis is idiopathic</a> <span class="tag new">Sep 2025</span><br><span class="meta">Frontiers in Allergy</span></li>
+      <li id="r-lived"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1555415525000121" target="_blank" rel="noopener">The Lived Experience of Patients With Idiopathic Anaphylaxis</a> <span class="tag new">2025</span><br><span class="meta">J Nurse Pract · qualitative phenomenological study, n=14</span></li>
+      <li id="r-kosnik"><a href="https://pubmed.ncbi.nlm.nih.gov/38527445/" target="_blank" rel="noopener">Prevention of Anaphylaxis Episodes in Idiopathic Anaphylaxis by Omalizumab</a> <span class="tag new">2024</span><br><span class="meta">Int Arch Allergy Immunol · Košnik, Zugan, Rijavec · n=7, all complete responders</span></li>
+      <li id="r-fda"><a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761399s000lbl.pdf" target="_blank" rel="noopener">OMLYCLO (omalizumab-igec) Prescribing Information — biosimilar</a> <span class="tag new">2025</span><br><span class="meta">US FDA label · boxed warning for anaphylaxis</span></li>
+      <li id="r-dupi"><a href="https://pubmed.ncbi.nlm.nih.gov/37689672/" target="_blank" rel="noopener">Treatment of idiopathic anaphylaxis with dupilumab: a case report</a><br><span class="meta">Allergy Asthma Clin Immunol · anti-IL-4Rα, near-resolution over 6 months</span></li>
+      <li id="r-review"><a href="https://pubmed.ncbi.nlm.nih.gov/34175498/" target="_blank" rel="noopener">Use of omalizumab for management of idiopathic anaphylaxis: systematic review & retrospective series</a><br><span class="meta">Ann Allergy Asthma Immunol · n=35 · CR 63% / PR 28.5%</span></li>
+      <li id="r-annals"><a href="https://www.annallergy.org/article/S1081-1206(21)00456-7/fulltext" target="_blank" rel="noopener">Use of omalizumab for management of idiopathic anaphylaxis (full text)</a><br><span class="meta">Ann Allergy Asthma Immunol · dosing & response patterns</span></li>
+      <li id="r-rct"><a href="https://www.jacionline.org/article/S0091-6749(20)31620-1/fulltext" target="_blank" rel="noopener">A randomized double-blind, placebo-controlled study of omalizumab for idiopathic anaphylaxis</a><br><span class="meta">J Allergy Clin Immunol · Carter et al. · NCT00890162 · n=19</span></li>
+      <li id="r-allosteric"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5473249/" target="_blank" rel="noopener">Allosteric mechanism of action of the therapeutic anti-IgE antibody omalizumab</a><br><span class="meta">crystal structure of omalizumab-Fab / IgE-Fc complex</span></li>
+      <li id="r-comparable"><a href="https://pubmed.ncbi.nlm.nih.gov/26509363/" target="_blank" rel="noopener">Comparable actions of omalizumab on mast cells and basophils</a><br><span class="meta">facilitated IgE dissociation · Syk/PLCγ/LAT signalling</span></li>
+      <li id="r-macglashan"><a href="https://pubmed.ncbi.nlm.nih.gov/23791510/" target="_blank" rel="noopener">Omalizumab increases the intrinsic sensitivity of human basophils to IgE-mediated stimulation</a><br><span class="meta">J Allergy Clin Immunol 2013 · MacGlashan &amp; Saini · the "paradoxical sensitisation" finding</span></li>
+      <li id="r-chang"><a href="https://www.jacionline.org/article/S0091-6749(06)00856-6/fulltext" target="_blank" rel="noopener">Anti-IgE as a mast cell–stabilizing therapeutic agent</a><br><span class="meta">Chang & Shiung · FcεRI downregulation to &lt;5%</span></li>
+      <li id="r-beck"><a href="https://pure.johnshopkins.edu/en/publications/omalizumab-induced-reductions-in-mast-cell-fc%CE%B5ri-expression-and-f-7/" target="_blank" rel="noopener">Omalizumab-induced reductions in mast cell FcεRI expression and function</a><br><span class="meta">Beck, MacGlashan et al. · JACI 2004</span></li>
+      <li id="r-kalesnikoff"><a href="https://pubmed.ncbi.nlm.nih.gov/17617628/" target="_blank" rel="noopener">Omalizumab reverses the phenotypic & functional effects of IgE-enhanced FcεRI on human skin mast cells</a><br><span class="meta">reversal of augmented degranulation, PGD₂, GM-CSF, TNF-α</span></li>
+      <li id="r-kaplan"><a href="https://pubmed.ncbi.nlm.nih.gov/27861988/" target="_blank" rel="noopener">Mechanisms of action that contribute to efficacy of omalizumab in chronic spontaneous urticaria</a><br><span class="meta">Allergy 2017 · Kaplan, Giménez-Arnau, Saini · authoritative MoA review (free IgE, FcεRI downregulation, CD23)</span></li>
+      <li id="r-hsu"><a href="https://pubmed.ncbi.nlm.nih.gov/20139035/" target="_blank" rel="noopener">Accumulated immune complexes of IgE and omalizumab trap allergens in an in vitro model</a><br><span class="meta">Int Immunopharmacol 2010 · Hsu, Shiung, Lin, Chang, Chang · "allergen-sweeper" hypothesis</span></li>
+      <li id="r-serrano"><a href="https://www.nature.com/articles/s41598-017-09361-4" target="_blank" rel="noopener">Omalizumab efficacy in CSU is not explained by inhibition of sera activity in effector cells</a><br><span class="meta">Sci Rep 2017 · Serrano-Candelas, Ferrer et al.</span></li>
+      <li id="r-gericke"><a href="https://pubmed.ncbi.nlm.nih.gov/25257818/" target="_blank" rel="noopener">Omalizumab may not inhibit mast cell and basophil activation in vitro</a><br><span class="meta">J Eur Acad Dermatol Venereol 2015 · Gericke, Ohanyan, Church, Maurer, Metz · removal of activating signal vs inhibitory signal</span></li>
+      <li id="r-perplexing"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7873102/" target="_blank" rel="noopener">Idiopathic Anaphylaxis: a Perplexing Diagnostic Challenge for Allergists</a><br><span class="meta">Curr Allergy Asthma Rep · lymphocyte activation, cytokines, MCAS classification</span></li>
+      <li id="r-yardstick"><a href="https://www.annallergy.org/article/S1081-1206(19)30613-1/fulltext" target="_blank" rel="noopener">Idiopathic anaphylaxis yardstick: practical recommendations</a><br><span class="meta">Ann Allergy Asthma Immunol · IL-4/IL-5/IL-13, CD3⁺HLA-DR⁺</span></li>
+      <li id="r-giannetti"><a href="https://www.jaci-inpractice.org/article/S2213-2198(19)30946-8/abstract" target="_blank" rel="noopener">Idiopathic Anaphylaxis: A Form of Mast Cell Activation Syndrome</a><br><span class="meta">Giannetti et al. · JACI:IP 2020</span></li>
+      <li id="r-tryptase"><a href="https://doi.org/10.1007/s12016-020-08777-7" target="_blank" rel="noopener">Using baseline and peak serum tryptase levels to diagnose anaphylaxis</a><br><span class="meta">Clin Rev Allergy Immunol 2020 · the (1.2 × baseline + 2 ng/mL) consensus rule</span></li>
+      <li id="r-frontiers"><a href="https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2024.1418897/full" target="_blank" rel="noopener">Mast cell stabilizers: from pathogenic roles to targeting therapies</a> <span class="tag new">2024</span><br><span class="meta">Front Immunol · omalizumab, ligelizumab, quilizumab, UB-221</span></li>
+      <li id="r-ciu-protocol"><a href="https://cdn.clinicaltrials.gov/large-docs/24/NCT02392624/Prot_000.pdf" target="_blank" rel="noopener">CIU omalizumab trial protocol — mechanism hypotheses (threshold-raising)</a><br><span class="meta">ClinicalTrials.gov NCT02392624</span></li>
+      <li id="r-ascia"><a href="https://www.allergy.org.au/patients/about-allergy/idiopathic-anaphylaxis" target="_blank" rel="noopener">Idiopathic Anaphylaxis — patient information (ASCIA)</a><br><span class="meta">Australasian Society of Clinical Immunology and Allergy</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="disclaim">
+      <b>This is an educational summary, not medical advice.</b> Omalizumab use in idiopathic anaphylaxis is off-label and must be individualised by a treating clinician. Anaphylaxis is a medical emergency treated with adrenaline. Content reflects sources available as of July 2026; the field is moving fast, so verify against current guidance and newer literature.
+    </div>
+    <p class="sig">Compiled for Indigo Kite Labs · focus dial maps reading depth to biological scale: organism → tissue → cell → molecule.</p>
+  </footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // Panels are native <details> — they open/close on tap with NO JavaScript,
+  // so the document is fully usable in iOS Mail/Files/Quick Look previews.
+  // The focus dial below is a progressive enhancement for when JS is available.
+  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  var hint = document.getElementById('scaleHint');
+  if(!stops.length) return;
+  var hints = {
+    1:'patient · plain language',
+    2:'clinician · applied medicine',
+    3:'researcher · cell biology',
+    4:'immunologist · molecular / 2025–26'
+  };
+
+  function applyLevel(lvl){
+    document.querySelectorAll('.layer').forEach(function(layer){
+      var ll = parseInt(layer.getAttribute('data-level'),10);
+      layer.open = (ll <= lvl);           // native property; no class needed
+    });
+    stops.forEach(function(s){
+      s.setAttribute('aria-pressed', s.getAttribute('data-set')===String(lvl) ? 'true':'false');
+    });
+    if(hint) hint.textContent = hints[lvl];
+  }
+
+  stops.forEach(function(s){
+    s.addEventListener('click', function(){ applyLevel(parseInt(s.getAttribute('data-set'),10)); });
+    s.addEventListener('keydown', function(e){
+      var i = stops.indexOf(s);
+      if(e.key==='ArrowRight' || e.key==='ArrowDown'){ e.preventDefault(); stops[Math.min(i+1,3)].focus(); stops[Math.min(i+1,3)].click(); }
+      if(e.key==='ArrowLeft' || e.key==='ArrowUp'){ e.preventDefault(); stops[Math.max(i-1,0)].focus(); stops[Math.max(i-1,0)].click(); }
+    });
+  });
+
+  // Enhance: only once JS confirms it can run, mark the dial as active and set the
+  // default depth. If JS never runs, level-1 panels are already open via markup and
+  // every panel remains tappable natively.
+  document.documentElement.classList.add('js');
+  applyLevel(1);
+})();
+</script>
+</body>
+</html>
