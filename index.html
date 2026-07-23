@@ -255,6 +255,26 @@
   .data-cell .num{font-family:"Fraunces",serif; font-size:30px; font-weight:600; color:var(--haem); line-height:1;}
   .data-cell .lab{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em; color:var(--ink-soft); margin-top:6px; text-transform:uppercase;}
 
+  /* ---------- figure / onset timeline ---------- */
+  .figure{
+    margin:20px 0 6px; border:1px solid var(--line); border-radius:14px;
+    background:var(--panel); padding:16px 16px 12px; box-shadow:var(--shadow);
+  }
+  .figure .figtitle{
+    font-family:"Fraunces",serif; font-weight:600; font-size:15.5px;
+    color:var(--haem-deep); margin-bottom:4px;
+  }
+  .figure .figkicker{
+    font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--eosin); margin-bottom:12px;
+  }
+  .figure svg{width:100%; height:auto; display:block;}
+  .figure figcaption{
+    font-size:12.5px; color:var(--ink-soft); margin-top:12px; line-height:1.55;
+    border-top:1px solid var(--line); padding-top:10px;
+  }
+  .figure figcaption strong{color:var(--ink);}
+
   /* ---------- paradox feature block ---------- */
   .paradox{
     margin:26px 0; padding:26px 26px 22px; border-radius:16px;
@@ -493,6 +513,88 @@
       <summary class="layer-tag"><span class="dot"></span><span class="mag">×20</span> · <span class="name">The clinic</span><span class="chev">▾</span></summary>
       <div class="layer-content">
         <p>Clinically, the useful mental model is <strong>threshold-raising</strong>. Beyond simply blocking allergen cross-linking, lowering free IgE and stripping FcεRI raises the overall degranulation threshold of the cell.<cite class="ref"><a href="#r-ciu-protocol">CIU protocol</a></cite> That is why the drug helps conditions where no external allergen is even in play — like chronic spontaneous urticaria, and, plausibly, idiopathic anaphylaxis.</p>
+        <p>A practical question is how quickly it works — and that depends on which cellular compartment you follow:</p>
+        <figure class="figure">
+          <div class="figkicker">Onset after the first dose</div>
+          <div class="figtitle">Three compartments, three timescales</div>
+          <svg viewBox="0 0 720 460" role="img" aria-labelledby="onsetTitle onsetDesc" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+            <title id="onsetTitle">Omalizumab onset timeline</title>
+            <desc id="onsetDesc">Free IgE falls within days, basophil FcεRI within about two weeks, and skin mast-cell FcεRI over one to two months; clinical protection in idiopathic anaphylaxis tracks the mast-cell curve and is assessed at eight to twelve weeks.</desc>
+
+            <!-- horizontal gridlines -->
+            <line x1="70" y1="30" x2="670" y2="30" stroke="var(--line)"/>
+            <line x1="70" y1="165" x2="670" y2="165" stroke="var(--line)"/>
+            <line x1="70" y1="300" x2="670" y2="300" stroke="var(--line-strong)"/>
+            <text x="60" y="34" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)">100</text>
+            <text x="60" y="169" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)">50</text>
+            <text x="60" y="304" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)">0</text>
+            <text x="22" y="165" transform="rotate(-90 22 165)" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10.5" letter-spacing="1" fill="var(--ink-soft)">% OF BASELINE</text>
+
+            <!-- vertical time gridlines + labels -->
+            <g stroke="var(--line)" opacity="0.7">
+              <line x1="70" y1="30" x2="70" y2="300"/>
+              <line x1="150" y1="30" x2="150" y2="300"/>
+              <line x1="220" y1="30" x2="220" y2="300"/>
+              <line x1="300" y1="30" x2="300" y2="300"/>
+              <line x1="410" y1="30" x2="410" y2="300"/>
+              <line x1="540" y1="30" x2="540" y2="300"/>
+              <line x1="650" y1="30" x2="650" y2="300"/>
+            </g>
+            <g font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="middle">
+              <text x="70" y="318">0</text>
+              <text x="150" y="318">3 d</text>
+              <text x="220" y="318">1 wk</text>
+              <text x="300" y="318">2 wk</text>
+              <text x="410" y="318">1 mo</text>
+              <text x="540" y="318">2 mo</text>
+              <text x="650" y="318">3 mo</text>
+            </g>
+            <text x="370" y="337" text-anchor="middle" font-size="11" fill="var(--ink-soft)">time after first dose &#8594;</text>
+
+            <!-- clinical assessment window -->
+            <rect x="540" y="30" width="110" height="270" fill="var(--eosin)" opacity="0.06"/>
+            <line x1="540" y1="30" x2="540" y2="300" stroke="var(--eosin)" opacity="0.45" stroke-dasharray="4 3"/>
+            <text x="595" y="48" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="var(--eosin)">assess 8–12 wk</text>
+
+            <!-- dose markers -->
+            <g fill="var(--ink-soft)">
+              <path d="M64,19 L76,19 L70,28 Z"/>
+              <path d="M404,19 L416,19 L410,28 Z"/>
+              <path d="M534,19 L546,19 L540,28 Z"/>
+            </g>
+            <g font-family="'IBM Plex Mono', monospace" font-size="9" fill="var(--ink-soft)" text-anchor="middle">
+              <text x="70" y="14">dose 1</text>
+              <text x="410" y="14">dose 2</text>
+              <text x="540" y="14">dose 3</text>
+            </g>
+
+            <!-- curves -->
+            <polyline points="70,30 150,289 220,297 300,298 410,298 540,298 650,298" fill="none" stroke="var(--eosin)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+            <polyline points="70,30 150,97.5 220,178.5 300,219 410,259.5 540,267.6 650,267.6" fill="none" stroke="var(--haem)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+            <polyline points="70,30 150,38.1 220,57 300,89.4 410,165 540,273 650,283.8" fill="none" stroke="var(--teal)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- accent dots -->
+            <circle cx="150" cy="289" r="3.4" fill="var(--eosin)"/>
+            <circle cx="300" cy="219" r="3.4" fill="var(--haem)"/>
+            <circle cx="540" cy="273" r="3.4" fill="var(--teal)"/>
+
+            <!-- legend -->
+            <g>
+              <line x1="70" y1="360" x2="98" y2="360" stroke="var(--eosin)" stroke-width="3" stroke-linecap="round"/>
+              <text x="106" y="364" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Free IgE</tspan><tspan fill="var(--ink-soft)"> — 96% suppressed by day 3, ~99% by 1 week</tspan></text>
+
+              <line x1="70" y1="386" x2="98" y2="386" stroke="var(--haem)" stroke-width="3" stroke-linecap="round"/>
+              <text x="106" y="390" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Basophil FcεRI</tspan><tspan fill="var(--ink-soft)"> — ~70% down by 2 weeks (the fast compartment)</tspan></text>
+
+              <line x1="70" y1="412" x2="98" y2="412" stroke="var(--teal)" stroke-width="3" stroke-linecap="round"/>
+              <text x="106" y="416" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Skin mast-cell FcεRI</tspan><tspan fill="var(--ink-soft)"> — full downregulation at 1–2 months</tspan></text>
+
+              <rect x="70" y="432" width="28" height="10" rx="2" fill="var(--eosin)" opacity="0.28"/>
+              <text x="106" y="442" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Clinical effect in IA</tspan><tspan fill="var(--ink-soft)"> — tracks mast cells; judge at 8–12 wk (a subset responds after dose 1)</tspan></text>
+            </g>
+          </svg>
+          <figcaption>Approximate, indication-dependent timescales. Free-IgE suppression is near-immediate and basophils follow within days,<cite class="ref"><a href="#r-onset">Onset study 2004</a></cite> but tissue mast cells — the effector cells in idiopathic anaphylaxis — lag by 1–2 months,<cite class="ref"><a href="#r-kaplan">Kaplan 2017</a></cite> so episode protection builds across the first one-to-three monthly doses. Subcutaneous peak at ~7–8 days; terminal half-life ~19–22 days.<cite class="ref"><a href="#r-pk">PK / CSU cohort</a></cite> <strong>Because protection is not established early — and the first dose carries the drug's own small anaphylaxis risk — adrenaline and trigger avoidance stay firmly in place throughout the onset period.</strong></figcaption>
+        </figure>
       </div>
     </details>
 
@@ -753,6 +855,8 @@
       <li id="r-allosteric"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5473249/" target="_blank" rel="noopener">Allosteric mechanism of action of the therapeutic anti-IgE antibody omalizumab</a><br><span class="meta">crystal structure of omalizumab-Fab / IgE-Fc complex</span></li>
       <li id="r-comparable"><a href="https://pubmed.ncbi.nlm.nih.gov/26509363/" target="_blank" rel="noopener">Comparable actions of omalizumab on mast cells and basophils</a><br><span class="meta">facilitated IgE dissociation · Syk/PLCγ/LAT signalling</span></li>
       <li id="r-macglashan"><a href="https://pubmed.ncbi.nlm.nih.gov/23791510/" target="_blank" rel="noopener">Omalizumab increases the intrinsic sensitivity of human basophils to IgE-mediated stimulation</a><br><span class="meta">J Allergy Clin Immunol 2013 · MacGlashan &amp; Saini · the "paradoxical sensitisation" finding</span></li>
+      <li id="r-onset"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0091674903031282" target="_blank" rel="noopener">Omalizumab rapidly decreases nasal allergic response and FcεRI on basophils</a><br><span class="meta">J Allergy Clin Immunol 2004 · free IgE −96% by day 3, basophil FcεRI −70% by day 14, clinical onset 7–14 days</span></li>
+      <li id="r-pk"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7065003/" target="_blank" rel="noopener">Response of FcεRI-bearing leucocytes to omalizumab in chronic spontaneous urticaria</a><br><span class="meta">Clin Exp Allergy · subcutaneous peak ~7–8 days, terminal half-life ~19–22 days; fast vs slow responders</span></li>
       <li id="r-chang"><a href="https://www.jacionline.org/article/S0091-6749(06)00856-6/fulltext" target="_blank" rel="noopener">Anti-IgE as a mast cell–stabilizing therapeutic agent</a><br><span class="meta">Chang & Shiung · FcεRI downregulation to &lt;5%</span></li>
       <li id="r-beck"><a href="https://pure.johnshopkins.edu/en/publications/omalizumab-induced-reductions-in-mast-cell-fc%CE%B5ri-expression-and-f-7/" target="_blank" rel="noopener">Omalizumab-induced reductions in mast cell FcεRI expression and function</a><br><span class="meta">Beck, MacGlashan et al. · JACI 2004</span></li>
       <li id="r-kalesnikoff"><a href="https://pubmed.ncbi.nlm.nih.gov/17617628/" target="_blank" rel="noopener">Omalizumab reverses the phenotypic & functional effects of IgE-enhanced FcεRI on human skin mast cells</a><br><span class="meta">reversal of augmented degranulation, PGD₂, GM-CSF, TNF-α</span></li>
@@ -774,7 +878,7 @@
     <div class="disclaim">
       <b>This is an educational summary, not medical advice.</b> Omalizumab use in idiopathic anaphylaxis is off-label and must be individualised by a treating clinician. Anaphylaxis is a medical emergency treated with adrenaline. Content reflects sources available as of July 2026; the field is moving fast, so verify against current guidance and newer literature.
     </div>
-    <p class="sig">Focus dial maps reading depth to biological scale: organism → tissue → cell → molecule.</p>
+    <p class="sig">Compiled for Indigo Kite Labs · focus dial maps reading depth to biological scale: organism → tissue → cell → molecule.</p>
   </footer>
 
 </main>
