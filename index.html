@@ -747,6 +747,160 @@
           <div class="data-cell"><div class="num">~3%</div><div class="lab">Arthralgia</div></div>
         </div>
         <p>The defining safety issue is the <strong>boxed warning for anaphylaxis</strong>: it occurs in roughly <strong>0.1–0.2%</strong> of patients, most often within the first three doses and frequently within two hours — but it can be delayed, and can appear even after more than a year of therapy. Among the major asthma biologics, omalizumab is the <strong>only one</strong> carrying this warning.<cite class="ref"><a href="#r-safety">Safety review 2024</a></cite><cite class="ref"><a href="#r-fda">FDA label 2025</a></cite></p>
+
+        <figure class="figure">
+          <div class="figkicker">Real-world timing · when it happens</div>
+          <div class="figtitle">Time from injection to onset of anaphylaxis</div>
+          <svg viewBox="0 0 720 410" role="img" aria-labelledby="anaTitle anaDesc" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+            <title id="anaTitle">Timing of omalizumab-associated anaphylaxis after a dose</title>
+            <desc id="anaDesc">Histogram of 124 spontaneously reported cases by time from injection to onset: about 35% within 30 minutes, 39% from 30 minutes to 6 hours, 22% from 6 to 24 hours, and 5% beyond 24 hours; a cumulative curve reaches roughly 73% by 6 hours and 95% by 24 hours.</desc>
+
+            <!-- left axis (counts) gridlines + ticks -->
+            <line x1="70" y1="40" x2="650" y2="40" stroke="var(--line)"/>
+            <line x1="70" y1="170" x2="650" y2="170" stroke="var(--line)"/>
+            <line x1="70" y1="300" x2="650" y2="300" stroke="var(--line-strong)"/>
+            <g font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="end">
+              <text x="60" y="304">0</text>
+              <text x="60" y="174">25</text>
+              <text x="60" y="44">50</text>
+            </g>
+            <text x="24" y="170" transform="rotate(-90 24 170)" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1" fill="var(--haem)">CASES (n=124)</text>
+
+            <!-- right axis (cumulative %) ticks -->
+            <g font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="start">
+              <text x="660" y="304">0</text>
+              <text x="660" y="174">50</text>
+              <text x="660" y="44">100</text>
+            </g>
+            <text x="700" y="170" transform="rotate(90 700 170)" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1" fill="var(--eosin)">CUMULATIVE %</text>
+
+            <!-- bars: counts per interval -->
+            <g fill="var(--haem)" opacity="0.85">
+              <rect x="105" y="76.4" width="70" height="223.6" rx="3"/>
+              <rect x="235" y="50.4" width="70" height="249.6" rx="3"/>
+              <rect x="365" y="159.6" width="70" height="140.4" rx="3"/>
+              <rect x="495" y="268.8" width="70" height="31.2" rx="3"/>
+            </g>
+            <!-- bar value labels: count (%) -->
+            <g text-anchor="middle" fill="var(--ink)">
+              <text x="140" y="66" font-weight="600" font-size="14">43</text>
+              <text x="140" y="79" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="var(--ink-soft)">35%</text>
+              <text x="270" y="40" font-weight="600" font-size="14">48</text>
+              <text x="270" y="53" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="var(--ink-soft)">39%</text>
+              <text x="400" y="149" font-weight="600" font-size="14">27</text>
+              <text x="400" y="162" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="var(--ink-soft)">22%</text>
+              <text x="530" y="258" font-weight="600" font-size="14">6</text>
+              <text x="530" y="271" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="var(--ink-soft)">5%</text>
+            </g>
+
+            <!-- cumulative onset curve -->
+            <polyline points="140,209.8 270,109.2 400,52.5 530,40" fill="none" stroke="var(--eosin)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+            <g fill="var(--eosin)">
+              <circle cx="140" cy="209.8" r="4"/>
+              <circle cx="270" cy="109.2" r="4"/>
+              <circle cx="400" cy="52.5" r="4"/>
+              <circle cx="530" cy="40" r="4"/>
+            </g>
+            <g font-family="'IBM Plex Mono', monospace" font-size="10" fill="var(--eosin)" text-anchor="middle" paint-order="stroke" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round">
+              <text x="140" y="226">35%</text>
+              <text x="270" y="101">73%</text>
+              <text x="400" y="44">95%</text>
+              <text x="524" y="33">100%</text>
+            </g>
+
+            <!-- x labels -->
+            <g font-size="12" fill="var(--ink)" text-anchor="middle">
+              <text x="140" y="320">&#8804;30 min</text>
+              <text x="270" y="320">30 min – 6 h</text>
+              <text x="400" y="320">6 – 24 h</text>
+              <text x="530" y="320">&gt;24 h</text>
+            </g>
+            <text x="360" y="343" text-anchor="middle" font-size="11" fill="var(--ink-soft)">time from injection to onset of reaction</text>
+
+            <!-- legend -->
+            <g>
+              <rect x="70" y="360" width="26" height="12" rx="2" fill="var(--haem)" opacity="0.85"/>
+              <text x="104" y="370" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Cases per interval</tspan><tspan fill="var(--ink-soft)"> — spontaneous reports, n=124 (Limb 2007)</tspan></text>
+              <line x1="70" y1="392" x2="96" y2="392" stroke="var(--eosin)" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="83" cy="392" r="3.6" fill="var(--eosin)"/>
+              <text x="104" y="396" font-size="12.5"><tspan font-weight="600" fill="var(--ink)">Cumulative %</tspan><tspan fill="var(--ink-soft)"> — ~73% by 6 h, ~95% by 24 h, but a real &gt;24 h tail</tspan></text>
+            </g>
+          </svg>
+          <figcaption>Distribution of time-to-onset for 124 spontaneously reported cases.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite> About 35% began within 30 minutes and ~73% within 6 hours — but ~22% appeared 6–24 hours out and ~5% beyond 24 hours, some with a protracted, staggered course rather than a single biphasic wave.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite> Independently, the AAAAI/ACAAI Joint Task Force (36 timed events) found 61% occurred within 2 hours of one of the first three doses, and calculated that observing <strong>2 hours after the first three injections and 30 minutes thereafter captures ~75%</strong> of reactions — the basis of current monitoring.<cite class="ref"><a href="#r-ojtf">OJTF 2007</a></cite> By dose number, roughly 70% occur within the first three doses, yet reactions span the very first dose to beyond a year of therapy.<cite class="ref"><a href="#r-lieberman">Lieberman 2017</a></cite><cite class="ref"><a href="#r-fda">FDA label 2025</a></cite> The one reproducible risk factor is a <strong>prior history of anaphylaxis of any cause</strong><cite class="ref"><a href="#r-lieberman">Lieberman 2017</a></cite> — the defining feature of the idiopathic-anaphylaxis population itself. Reactions have been <strong>non-fatal across every series</strong>, consistent with an FcγR-mediated immune-complex mechanism rather than classic anti-drug IgE.<cite class="ref"><a href="#r-fcgr">FcγR mechanism 2020</a></cite></figcaption>
+        </figure>
+
+        <figure class="figure">
+          <div class="figkicker">What the reaction looks like</div>
+          <div class="figtitle">Symptoms experienced</div>
+          <svg viewBox="0 0 720 275" role="img" aria-labelledby="sxT sxD" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+            <title id="sxT">Symptom frequency in omalizumab-associated anaphylaxis</title>
+            <desc id="sxD">Respiratory involvement in about 89 percent of cases, cutaneous or angioedema symptoms in the majority, and hypotension or syncope in about 14 percent.</desc>
+            <g stroke="var(--line)">
+              <line x1="245" y1="42" x2="245" y2="198"/>
+              <line x1="457" y1="42" x2="457" y2="198"/>
+              <line x1="670" y1="42" x2="670" y2="198"/>
+            </g>
+            <g font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="middle">
+              <text x="245" y="216">0</text><text x="457" y="216">50</text><text x="670" y="216">100%</text>
+            </g>
+            <!-- respiratory -->
+            <rect x="245" y="55" width="378.5" height="30" rx="3" fill="var(--haem)" opacity="0.85"/>
+            <text x="235" y="66" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--ink)">Respiratory</text>
+            <text x="235" y="81" text-anchor="end" font-size="10.5" fill="var(--ink-soft)">bronchospasm · dyspnoea · throat tightness</text>
+            <text x="631" y="75" font-size="12.5" font-weight="600" fill="var(--haem)">89%</text>
+            <!-- cutaneous -->
+            <rect x="245" y="105" width="340" height="30" rx="3" fill="var(--eosin)" opacity="0.85"/>
+            <text x="235" y="116" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--ink)">Cutaneous / angioedema</text>
+            <text x="235" y="131" text-anchor="end" font-size="10.5" fill="var(--ink-soft)">hives · flushing · lip / tongue swelling</text>
+            <text x="592" y="125" font-size="12.5" font-weight="600" fill="var(--eosin)">majority</text>
+            <!-- cardiovascular -->
+            <rect x="245" y="155" width="59.4" height="30" rx="3" fill="var(--teal)" opacity="0.85"/>
+            <text x="235" y="166" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--ink)">Hypotension / syncope</text>
+            <text x="235" y="181" text-anchor="end" font-size="10.5" fill="var(--ink-soft)">dizziness · collapse</text>
+            <text x="312" y="175" font-size="12.5" font-weight="600" fill="var(--teal)">14%</text>
+            <text x="245" y="248" font-size="12" fill="var(--ink-soft)">Across adjudicated series: adrenaline used in <tspan font-weight="600" fill="var(--ink)">60%</tspan>, hospitalised <tspan font-weight="600" fill="var(--ink)">17%</tspan>, and <tspan font-weight="600" fill="var(--ink)">no fatalities</tspan>.</text>
+          </svg>
+          <figcaption>Organ-system involvement in adjudicated cases.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite><cite class="ref"><a href="#r-lieberman">Lieberman 2017</a></cite> The diagnostic definition required skin/mucosal involvement <em>plus</em> respiratory or cardiovascular compromise, so cutaneous and respiratory features dominate by design; isolated single-system events (e.g. hives alone) were excluded. Respiratory compromise appeared in ~89–95%, and hypotension or syncope — the markers of a severe, potentially life-threatening reaction — in ~14%.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite></figcaption>
+        </figure>
+
+        <figure class="figure">
+          <div class="figkicker">The protracted progression</div>
+          <div class="figtitle">How symptoms unfold over time</div>
+          <svg viewBox="0 0 720 320" role="img" aria-labelledby="ppT ppD" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+            <title id="ppT">Temporal progression of omalizumab-associated anaphylaxis symptoms</title>
+            <desc id="ppD">Symptoms can appear in a staggered sequence: itching and flushing within minutes, bronchospasm minutes to hours later, then rash, angioedema, hypotension and syncope hours beyond, with late or recurrent symptoms the next day in about 8 percent of cases.</desc>
+            <!-- timeline -->
+            <line x1="55" y1="92" x2="672" y2="92" stroke="var(--haem)" stroke-width="2.5"/>
+            <path d="M672,92 L661,86 L661,98 Z" fill="var(--haem)"/>
+            <g font-family="'IBM Plex Mono', monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="middle">
+              <text x="110" y="55">≤30 min</text>
+              <text x="305" y="55">minutes – hours</text>
+              <text x="495" y="55">hours later</text>
+              <text x="636" y="55">next day · ~8%</text>
+            </g>
+            <g>
+              <circle cx="110" cy="92" r="7" fill="var(--eosin)"/>
+              <circle cx="305" cy="92" r="7" fill="var(--eosin)"/>
+              <circle cx="495" cy="92" r="7" fill="var(--eosin)"/>
+              <circle cx="636" cy="92" r="7" fill="var(--ink)"/>
+            </g>
+            <g font-size="11.5" fill="var(--ink)" text-anchor="middle">
+              <text x="110" y="122">Itching, flushing,<tspan x="110" dy="15">ocular burning</tspan></text>
+              <text x="305" y="122">Bronchospasm,<tspan x="305" dy="15">dyspnoea</tspan></text>
+              <text x="495" y="122">Rash, angioedema,<tspan x="495" dy="15">hypotension, syncope</tspan></text>
+              <text x="636" y="122">Late / recurrent<tspan x="636" dy="15">symptoms</tspan></text>
+            </g>
+            <!-- case example callout -->
+            <rect x="45" y="185" width="630" height="58" rx="8" fill="var(--l1-bg)"/>
+            <rect x="45" y="185" width="4" height="58" rx="2" fill="var(--eosin)"/>
+            <text x="66" y="205" font-family="'IBM Plex Mono', monospace" font-size="9.5" letter-spacing="1" fill="var(--eosin)">DOCUMENTED CASE</text>
+            <text x="66" y="224" font-size="12.5" fill="var(--ink)">Pruritus + ocular burning 1 h after the first dose <tspan fill="var(--ink-soft)">→</tspan> breathlessness and an</text>
+            <text x="66" y="240" font-size="12.5" fill="var(--ink)">asthma exacerbation that evening <tspan fill="var(--ink-soft)">→</tspan> angioedema the following day.</text>
+            <text x="45" y="278" font-size="12" fill="var(--ink-soft)">Unlike a typical biphasic reaction (recurrence ~8 h), symptoms may march in a staggered, drawn-out</text>
+            <text x="45" y="295" font-size="12" fill="var(--ink-soft)">sequence over hours to more than a day — the reason delayed observation and a 24-hour autoinjector matter.</text>
+          </svg>
+          <figcaption>About 8% of cases show this protracted course, with individual features staggered over hours rather than arriving together or in a single biphasic wave.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite> The timing and pattern did not correspond to the biphasic response seen in other allergic reactions, which is what makes omalizumab-associated anaphylaxis atypical and underlies the extended monitoring and 24-hour adrenaline advice.<cite class="ref"><a href="#r-limb">Limb 2007</a></cite><cite class="ref"><a href="#r-ojtf">OJTF 2007</a></cite></figcaption>
+        </figure>
         <div class="callout edge">
           <span class="k">The double irony in IA</span>
           The drug used to <em>prevent</em> anaphylaxis can, rarely, <em>cause</em> it — and it must never be used to <em>treat</em> an acute episode. Practically: observe the patient after early doses, co-prescribe an adrenaline autoinjector, and make clear this is maintenance therapy, not rescue.
@@ -846,6 +1000,9 @@
       <li id="r-kosnik"><a href="https://pubmed.ncbi.nlm.nih.gov/38527445/" target="_blank" rel="noopener">Prevention of Anaphylaxis Episodes in Idiopathic Anaphylaxis by Omalizumab</a> <span class="tag new">2024</span><br><span class="meta">Int Arch Allergy Immunol · Košnik, Zugan, Rijavec · n=7, all complete responders</span></li>
       <li id="r-fda"><a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761399s000lbl.pdf" target="_blank" rel="noopener">OMLYCLO (omalizumab-igec) Prescribing Information — biosimilar</a> <span class="tag new">2025</span><br><span class="meta">US FDA label · boxed warning for anaphylaxis</span></li>
       <li id="r-safety"><a href="https://www.jacionline.org/article/S0091-6749(24)01183-7/fulltext" target="_blank" rel="noopener">Omalizumab safety concerns</a> <span class="tag new">2024</span><br><span class="meta">J Allergy Clin Immunol · anaphylaxis, pregnancy, malignancy, cardiovascular events, infections</span></li>
+      <li id="r-limb"><a href="https://www.jacionline.org/article/S0091-6749(07)01781-2/fulltext" target="_blank" rel="noopener">Delayed onset and protracted progression of anaphylaxis after omalizumab administration in patients with asthma</a><br><span class="meta">J Allergy Clin Immunol 2007 · Limb et al. · FAERS series, n=124 · time-to-onset distribution</span></li>
+      <li id="r-ojtf"><a href="https://pubmed.ncbi.nlm.nih.gov/17996286/" target="_blank" rel="noopener">AAAAI/ACAAI Joint Task Force Report on omalizumab-associated anaphylaxis</a><br><span class="meta">J Allergy Clin Immunol 2007 · 0.09% reporting rate; 61% within 2 h of first 3 doses; observation-window basis</span></li>
+      <li id="r-lieberman"><a href="https://www.jacionline.org/article/S0091-6749(17)31269-1/fulltext" target="_blank" rel="noopener">Anaphylaxis associated with omalizumab administration: risk factors and patient characteristics</a><br><span class="meta">J Allergy Clin Immunol 2017 · Lieberman et al. · prior anaphylaxis (any cause) as risk factor; ~70% within first 3 doses</span></li>
       <li id="r-excels"><a href="https://www.jacionline.org/article/s0091-6749(16)30961-7/fulltext" target="_blank" rel="noopener">Cardiovascular and cerebrovascular events among patients receiving omalizumab (EXCELS)</a><br><span class="meta">J Allergy Clin Immunol · FDA post-marketing cohort · n=5007 vs 2829, 5-year</span></li>
       <li id="r-fcgr"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7269578/" target="_blank" rel="noopener">The anti-IgE mAb omalizumab induces adverse reactions by engaging Fcγ receptors</a><br><span class="meta">FcγR-humanised mice · IgE:omalizumab immune complexes · Fc-silenced variant avoids reactions</span></li>
       <li id="r-dupi"><a href="https://pubmed.ncbi.nlm.nih.gov/37689672/" target="_blank" rel="noopener">Treatment of idiopathic anaphylaxis with dupilumab: a case report</a><br><span class="meta">Allergy Asthma Clin Immunol · anti-IL-4Rα, near-resolution over 6 months</span></li>
